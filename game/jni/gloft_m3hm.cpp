@@ -19,6 +19,7 @@
 #include "platform.h"
 #include "jni.h"
 #include "jni_internals.h"
+#include "app_exit.h"
 #include "io_paths.h"
 #include "trace.h"
 #include "mc3_classes.h"
@@ -467,6 +468,21 @@ static void GloftM3HM_moveToBackground(JNIEnv *env, jclass clazz)
     TRACE_ONCE("moveToBackground() - ignored, there is no task switcher");
 }
 
+/*
+ * The game's own quit. The in-game exit dialog confirms by calling the static
+ * Exit() on the activity class - not Activity.finish(), which this port
+ * already handles - and an unregistered method makes the button do nothing
+ * (RG351MP field report: "Class GloftM3HM does not have static method
+ * Exit()V", once per press). Same contract as finish(): record the request
+ * and let the frame loop unwind, because this arrives from inside the
+ * engine's call stack. See portbase/android/app_exit.h.
+ */
+static void GloftM3HM_Exit(JNIEnv *env, jclass clazz)
+{
+    (void)env; (void)clazz;
+    android_app_request_exit("the game called GloftM3HM.Exit()");
+}
+
 static jobject GloftM3HM_getIMEI(JNIEnv *env, jclass clazz)
 {
     (void)clazz;
@@ -734,6 +750,8 @@ static jobject GloftM3HM_getData(JNIEnv *env, jclass clazz, jobject bundle)
         CLZ::clazz, "SetAndroidOrientation", "(I)V"), \
     ManagedMethod::RegisterStatic<&GloftM3HM_moveToBackground>( \
         CLZ::clazz, "moveToBackground", "()V"), \
+    ManagedMethod::RegisterStatic<&GloftM3HM_Exit>( \
+        CLZ::clazz, "Exit", "()V"), \
 
 const ManagedMethod gloftM3HMMethods[] = {
     MC3_ACTIVITY_METHODS(GloftM3HM)
