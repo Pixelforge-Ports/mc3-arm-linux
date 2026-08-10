@@ -14,12 +14,10 @@
  *   - the packager reads this header when it reports what it built.
  *
  * Bump it here when cutting a build; nothing else needs editing.
- *
- * 0.1.0 is a bring-up build: it has never run on the hardware.
  */
 #ifndef MC3_PORT_VERSION_H
 #define MC3_PORT_VERSION_H
 
-#define MC3_PORT_VERSION "0.1.0"
+#define MC3_PORT_VERSION "1.0.1"
 
 #endif /* MC3_PORT_VERSION_H */
