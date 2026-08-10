@@ -60,6 +60,8 @@
 extern "C" long android_io_assets_opened(void);
 extern "C" long android_gl_textures_uploaded(void);
 extern "C" long android_gl_draw_calls(void);
+/* portbase's viewport scaler (src/symtab_glprobe.cpp); it exports no header. */
+extern "C" void viewport_scale_init(int phys_w, int phys_h);
 
 /*
  * The library, and where it sits in the player's tree.
@@ -311,6 +313,16 @@ int main(int argc, char **argv)
         int w = 0, h = 0;
         SDL_GL_GetDrawableSize(window, &w, &h);
         trace("drawable %dx%d", w, h);
+
+        /*
+         * Arm the viewport scaler with the panel it just measured. The
+         * launcher has exported MC3_SCALE since 1.0.0 and the machinery in
+         * portbase remapped nothing, because this call was missing: on any
+         * panel that is not 640x480 the game rendered into the bottom-left
+         * corner (reported on an R46H, root-caused with a patched binary on
+         * an RG34XXSP by Codebr0ken - the fix is theirs).
+         */
+        viewport_scale_init(w, h);
 
         const GLubyte *(*get_string)(GLenum) =
             (const GLubyte *(*)(GLenum))SDL_GL_GetProcAddress("glGetString");
