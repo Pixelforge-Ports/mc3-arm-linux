@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gameList>
+	<game>
+		<path>./Modern Combat 3.sh</path>
+		<name>Modern Combat 3: Fallen Nation</name>
+		<desc>The 2011 mobile first-person shooter by Gameloft. Port by EapRules. It runs the original Android ARM library directly through a bionic/JNI compatibility loader. Supply your own v1.1.7g APK plus both OBB expansion files; the first launch imports them automatically.</desc>
+		<releasedate>20111222T000000</releasedate>
+		<developer>Gameloft</developer>
+		<publisher>Gameloft</publisher>
+		<genre>Action / Shooter</genre>
+		<players>1</players>
+		<image>./mc3/cover.png</image>
+	</game>
+</gameList>

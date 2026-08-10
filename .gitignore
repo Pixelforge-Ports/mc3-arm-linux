@@ -1,0 +1,9 @@
+# Build output and everything the harness produces on the way to a verdict.
+#
+# The core dumps matter: portbase's crash handler writes one per faulting run
+# (qemu_mc3_<timestamp>_<tid>.core), so an afternoon of bring-up leaves a dozen
+# multi-megabyte files next to the source. They are worth reading and never
+# worth committing.
+build/
+harness/results/
+qemu_*.core

@@ -1,0 +1,42 @@
+{
+  "version": 4,
+  "name": "mc3-native-arm.zip",
+  "items": [
+    "Modern Combat 3.sh",
+    "mc3"
+  ],
+  "items_opt": [],
+  "attr": {
+    "title": "Modern Combat 3: Fallen Nation",
+    "porter": [
+      "EapRules"
+    ],
+    "desc": "The 2011 Modern Combat 3: Fallen Nation mobile first-person shooter by Gameloft, running its original Android ARM library directly on Linux through a bionic/JNI compatibility loader.",
+    "desc_md": null,
+    "inst": "Supply your own Modern Combat 3 v1.1.7g APK plus its two OBB expansion files (main.1120 and patch.11428). Put them in ports/mc3/; the donor filenames do not matter and the first launch extracts and validates them automatically. Keep the port release named mc3-native-arm.zip. Wait for PortMaster's Finished running autoinstall dialog, then reboot normally before looking for the game in Ports. The supported native-library SHA1 is be0d5e8779899e081a538b3930ec711d2df8aeb4. No game data is included.",
+    "inst_md": null,
+    "genres": [
+      "action",
+      "shooter"
+    ],
+    "image": {},
+    "rtr": false,
+    "exp": false,
+    "runtime": null,
+    "reqs": [
+      "analog_2"
+    ],
+    "arch": [
+      "armhf"
+    ],
+    "min_glibc": "2.29",
+    "status": {
+      "source": "https://github.com/EapRules/mc3-native-arm",
+      "date_added": "2026-08-09"
+    },
+    "publisher": "Gameloft",
+    "developer": "Gameloft",
+    "released": "2011-12-22",
+    "players": "1"
+  }
+}
