@@ -18,6 +18,6 @@
 #ifndef MC3_PORT_VERSION_H
 #define MC3_PORT_VERSION_H
 
-#define MC3_PORT_VERSION "1.0.3"
+#define MC3_PORT_VERSION "1.0.4"
 
 #endif /* MC3_PORT_VERSION_H */
