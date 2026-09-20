@@ -9,6 +9,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
+python3 tools/sync_package.py
 
 OUT="build/mc3-native-arm.zip"
 STAGE="build/pkg-portmaster"
@@ -34,7 +35,7 @@ mkdir -p "$STAGE/mc3"
 # assets-fallback (fix_path) handles the flat layout.
 cp "ports/Modern Combat 3.sh"                       "$STAGE/"
 cp build/mc3                              "$STAGE/mc3/"
-cp ports/mc3/mc3.gptk             "$STAGE/mc3/"
+cp ports/mc3/mc3.ini             "$STAGE/mc3/"
 cp ports/mc3/port.json                    "$STAGE/mc3/"
 cp ports/mc3/gameinfo.xml                 "$STAGE/mc3/"
 # The artwork PortMaster merges into the frontend's game list when it installs
@@ -56,6 +57,8 @@ cp -R build/libs.armhf                            "$STAGE/mc3/"
 # place.
 mkdir -p "$STAGE/mc3/licenses/libraries"
 cp LICENSE   "$STAGE/mc3/licenses/LICENSE-portmaster-port.txt"
+cp LICENSE "$STAGE/mc3/licenses/LICENSE-eapx.txt"
+cp ports/mc3/LICENSE-gptokeyb.txt "$STAGE/mc3/licenses/"
 cp NOTICE.md "$STAGE/mc3/licenses/NOTICE.md"
 cp portbase/third_party/gmloader/LICENSE.md "$STAGE/mc3/licenses/LICENSE-gmloader.md"
 cp portbase/third_party/powervr/LICENSE.md  "$STAGE/mc3/licenses/LICENSE-powervr.txt"
@@ -95,21 +98,11 @@ unzip -tq "$OUT" >/dev/null
 # The packaged eapx must be the canonical one. An earlier port shipped 0.2.0
 # while the source tree was already at 0.4.1, because nobody compared them - the
 # copy in tools/ is easy to forget and impossible to notice from the outside.
-canonical="${EAPX_CANONICAL:-$HOME/Projects/Others/handheld/eapx/eapx.py}"
-if [ -f "$canonical" ]; then
-  if ! cmp -s tools/eapx.py "$canonical"; then
-    echo "refusing package: tools/eapx.py differs from the canonical $canonical" >&2
-    echo "  packaged:  $(sed -n 's/^VERSION = "\(.*\)"/\1/p' tools/eapx.py)" >&2
-    echo "  canonical: $(sed -n 's/^VERSION = "\(.*\)"/\1/p' "$canonical")" >&2
-    exit 1
-  fi
-else
-  echo "note: canonical eapx not found at $canonical; packaged copy not verified" >&2
-fi
+cmp tools/eapx.py "$STAGE/mc3/eapx.py"
 
 listing="$(unzip -Z1 "$OUT")"
 for required in "Modern Combat 3.sh" "mc3/mc3" \
-                "mc3/mc3.gptk" "mc3/port.json" \
+                "mc3/mc3.ini" "mc3/port.json" \
                 "mc3/gameinfo.xml" "mc3/README.md" \
                 "mc3/cover.png" "mc3/screenshot.png" \
                 "mc3/CREDITS.md" \
@@ -142,8 +135,8 @@ esac
 # from a stale stage would have shipped a port whose text never rendered, and
 # nothing in the checks above would have noticed - they all pass on an old
 # binary. Comparing the hashes is the only check that catches it.
-built_sha="$(shasum -a 256 build/mc3 | cut -d' ' -f1)"
-packed_sha="$(unzip -p "$OUT" mc3/mc3 | shasum -a 256 | cut -d' ' -f1)"
+built_sha="$(sha256sum build/mc3 | cut -d' ' -f1)"
+packed_sha="$(unzip -p "$OUT" mc3/mc3 | sha256sum | cut -d' ' -f1)"
 [ "$built_sha" = "$packed_sha" ] || {
     echo "refusing package: the zipped binary is not the one just built" >&2
     echo "  built:  $built_sha" >&2

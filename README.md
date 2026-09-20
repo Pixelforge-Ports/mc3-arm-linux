@@ -81,3 +81,36 @@ briefings skipped cleanly, SWP atomics emulated on RK3326, eapx
 first-boot import in place. Known pending work before the first
 release: a crash when restarting a mission from the pause menu, and
 the harness autopilot milestone.
+
+## Pixelforge handheld adaptation
+
+Based on the port work by [EapRules](https://github.com/EapRules/mc3-native-arm). Adaptations by Pixelforge ports (Ronax). Original licences and credits are retained.
+
+The loader automatically detects 640x480, 720x480 (RG34XX-SP), 720x720, 1024x768, 1280x720 and other display sizes. Put `WIDTHxHEIGHT`, for example `720x480`, in `ports/mc3/resolution.txt` to override detection; put `auto` there to restore it. Higher resolutions can reduce performance. Firmware must support ARM32 applications and matching graphics libraries.
+
+First launch uses eapx by EapRules, showing preparation stages and overall percentage in PortMaster, with console progress as a fallback. Supply the exact game version listed above. Keep the device powered on until setup completes. Native controller handling remains active; gptokeyb2 supplies the exit shortcut.
+
+These source changes need handheld verification. Upstream hardware reports describe the original port, not validation of every new resolution.
+
+## Build this adaptation in PowerShell
+
+Install Docker Desktop, select its WSL2 Linux engine, and keep it running. Open PowerShell in this repository and run:
+
+```powershell
+docker build -t mc3-build -f portbase/Dockerfile.build portbase
+docker run --rm --mount "type=bind,source=$($PWD.Path),target=/src" -w /src mc3-build bash -lc "make -j2 && make libs && bash package_portmaster.sh"
+```
+
+Output: `build/mc3-native-arm.zip`. No purchased game data is required to build. A dated Debian snapshot keeps the old glibc build baseline available.
+
+The `package/` directory exposes metadata and images for the website. Run `python tools/sync_package.py` after changing files under `ports/`. Upload the source and package metadata at your release tag, and attach the generated ZIP to the release.
+
+## One-command Windows build
+
+With Docker Desktop running in Linux-container mode, run from this source folder:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+This script runs the Docker image build, compilation and packaging steps above. Add `-NoCache` to refresh the build environment. No game files are required.

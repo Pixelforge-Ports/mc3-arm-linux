@@ -7,3 +7,5 @@
 build/
 harness/results/
 qemu_*.core
+
+__pycache__/

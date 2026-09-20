@@ -32,6 +32,7 @@
 #include <unistd.h>
 
 #include <SDL2/SDL.h>
+#include "display_config.h"
 
 #include "so_util.h"
 #include "khronos/gles2.h"
@@ -75,8 +76,8 @@ static const char *kNativeLibDir = "lib/armeabi-v7a";
 
 /* The R36S panel. The engine takes its resolution from the resize call below
  * and this port never changes it afterwards. */
-static const int kWidth  = 640;
-static const int kHeight = 480;
+static int kWidth = 640;
+static int kHeight = 480;
 
 /* ---------------------------------------------------------- the module */
 
@@ -252,6 +253,7 @@ int main(int argc, char **argv)
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0) {
         trace("SDL_Init(video+gamecontroller) failed: %s", SDL_GetError());
     } else {
+        if (!display_config::detect("MC3", kWidth, kHeight, false)) return 2;
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
@@ -312,6 +314,7 @@ int main(int argc, char **argv)
 
         int w = 0, h = 0;
         SDL_GL_GetDrawableSize(window, &w, &h);
+        if (!display_config::drawable("MC3", w, h, kWidth, kHeight, false)) return 2;
         trace("drawable %dx%d", w, h);
 
         /*

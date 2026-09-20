@@ -1,0 +1,377 @@
+{
+  "schema": 1,
+  "id": "mc3-1.1.7g",
+  "version": "1",
+  "title": "Modern Combat 3: Fallen Nation",
+  "abi_order": [
+    "armeabi-v7a"
+  ],
+  "input": {
+    "search_dirs": [
+      "gamedata",
+      "."
+    ]
+  },
+  "extract": [
+    {
+      "id": "native-library",
+      "description": "MC3 v1.1.7g native library",
+      "destination": "lib/armeabi-v7a/libModernCombat3.so",
+      "source": {
+        "kind": "entry",
+        "patterns": [
+          "lib/armeabi-v7a/libModernCombat3.so",
+          "*/lib/armeabi-v7a/libModernCombat3.so",
+          "libModernCombat3.so"
+        ]
+      },
+      "validate": {
+        "size": 9766612,
+        "sha256": [
+          "99cd2fe38e4387c362c4435437e53d90c55ebea61e36695e49c8efdf1202d9b2"
+        ],
+        "critical_regions": {
+          "regions": [
+            {
+              "offset": "0x232bac",
+              "size": 32
+            },
+            {
+              "offset": "0x233540",
+              "size": 32
+            },
+            {
+              "offset": "0x234884",
+              "size": 32
+            },
+            {
+              "offset": "0x6f144c",
+              "size": 32
+            },
+            {
+              "offset": "0x6f15dc",
+              "size": 24
+            },
+            {
+              "offset": "0x6f2428",
+              "size": 32
+            },
+            {
+              "offset": "0x6f2570",
+              "size": 16
+            },
+            {
+              "offset": "0x7041e0",
+              "size": 64
+            },
+            {
+              "offset": "0x7036fc",
+              "size": 64
+            },
+            {
+              "offset": "0x20f410",
+              "size": 64
+            },
+            {
+              "offset": "0x6ab354",
+              "size": 64
+            },
+            {
+              "offset": "0x6ab588",
+              "size": 64
+            },
+            {
+              "offset": "0x6ab410",
+              "size": 4
+            }
+          ],
+          "sha256": "c2b079e0bbbb46f6f25b7b998c9140ba3d2b6db4eda0971b2b3cf65317e33f37"
+        },
+        "elf_machine": "armeabi-v7a"
+      }
+    },
+    {
+      "id": "main-obb",
+      "description": "main expansion container (Gameloft archive, served as-is)",
+      "destination": "main.1120.com.gameloft.android.ANMP.GloftM3HM.obb",
+      "source": {
+        "kind": "blob",
+        "patterns": [
+          "main.1120.com.gameloft.android.ANMP.GloftM3HM.obb",
+          "main.1120.*.obb",
+          "obb/com.gameloft.android.ANMP.GloftM3HM/main.1120.*.obb",
+          "Android/obb/com.gameloft.android.ANMP.GloftM3HM/main.1120.*.obb",
+          "com.gameloft.android.ANMP.GloftM3HM/main.1120.*.obb"
+        ]
+      },
+      "validate": {
+        "size": 1342717349,
+        "sha256": [
+          "c96d5eb03d3e2140dab48979a251fa7d57dda3f65f9523d40b255a9f3d4119e0"
+        ],
+        "critical_regions": {
+          "regions": [
+            {
+              "offset": "0x0",
+              "size": 65536
+            },
+            {
+              "offset": "0xb6ee43c",
+              "size": 65536
+            },
+            {
+              "offset": "0x16ddc878",
+              "size": 65536
+            },
+            {
+              "offset": "0x224cacb4",
+              "size": 65536
+            },
+            {
+              "offset": "0x2dbb90f0",
+              "size": 65536
+            },
+            {
+              "offset": "0x392a752c",
+              "size": 65536
+            },
+            {
+              "offset": "0x44995968",
+              "size": 65536
+            },
+            {
+              "offset": "0x50073da5",
+              "size": 65536
+            }
+          ],
+          "sha256": "00018a2e26234c5c019ec1f50fe606d4129a318f88c9e3ae8ce936ffb9b009bb"
+        }
+      }
+    },
+    {
+      "id": "patch-obb",
+      "description": "patch expansion (mission briefings and updates)",
+      "destination": "patch.11428.com.gameloft.android.ANMP.GloftM3HM.obb",
+      "source": {
+        "kind": "blob",
+        "patterns": [
+          "patch.11428.com.gameloft.android.ANMP.GloftM3HM.obb",
+          "patch.11428.*.obb",
+          "obb/com.gameloft.android.ANMP.GloftM3HM/patch.11428.*.obb",
+          "Android/obb/com.gameloft.android.ANMP.GloftM3HM/patch.11428.*.obb",
+          "com.gameloft.android.ANMP.GloftM3HM/patch.11428.*.obb"
+        ]
+      },
+      "validate": {
+        "size": 81507652,
+        "sha256": [
+          "fc9dc19c90c64508bf87fff60203744f338dfac8cb95e3f68367bc436019cb17"
+        ],
+        "critical_regions": {
+          "regions": [
+            {
+              "offset": "0x0",
+              "size": 65536
+            },
+            {
+              "offset": "0xb1ac2e",
+              "size": 65536
+            },
+            {
+              "offset": "0x163585c",
+              "size": 65536
+            },
+            {
+              "offset": "0x215048a",
+              "size": 65536
+            },
+            {
+              "offset": "0x2c6b0b8",
+              "size": 65536
+            },
+            {
+              "offset": "0x3785ce6",
+              "size": 65536
+            },
+            {
+              "offset": "0x42a0914",
+              "size": 65536
+            },
+            {
+              "offset": "0x4dab544",
+              "size": 65536
+            }
+          ],
+          "sha256": "5ca6676885dd154b5853ffa40a052e541766e39aed0a491b09b293437738567d"
+        }
+      }
+    }
+  ],
+  "validate": [
+    {
+      "size": 9766612,
+      "sha256": [
+        "99cd2fe38e4387c362c4435437e53d90c55ebea61e36695e49c8efdf1202d9b2"
+      ],
+      "critical_regions": {
+        "regions": [
+          {
+            "offset": "0x232bac",
+            "size": 32
+          },
+          {
+            "offset": "0x233540",
+            "size": 32
+          },
+          {
+            "offset": "0x234884",
+            "size": 32
+          },
+          {
+            "offset": "0x6f144c",
+            "size": 32
+          },
+          {
+            "offset": "0x6f15dc",
+            "size": 24
+          },
+          {
+            "offset": "0x6f2428",
+            "size": 32
+          },
+          {
+            "offset": "0x6f2570",
+            "size": 16
+          },
+          {
+            "offset": "0x7041e0",
+            "size": 64
+          },
+          {
+            "offset": "0x7036fc",
+            "size": 64
+          },
+          {
+            "offset": "0x20f410",
+            "size": 64
+          },
+          {
+            "offset": "0x6ab354",
+            "size": 64
+          },
+          {
+            "offset": "0x6ab588",
+            "size": 64
+          },
+          {
+            "offset": "0x6ab410",
+            "size": 4
+          }
+        ],
+        "sha256": "c2b079e0bbbb46f6f25b7b998c9140ba3d2b6db4eda0971b2b3cf65317e33f37"
+      },
+      "elf_machine": "armeabi-v7a",
+      "path": "lib/armeabi-v7a/libModernCombat3.so"
+    },
+    {
+      "size": 1342717349,
+      "sha256": [
+        "c96d5eb03d3e2140dab48979a251fa7d57dda3f65f9523d40b255a9f3d4119e0"
+      ],
+      "critical_regions": {
+        "regions": [
+          {
+            "offset": "0x0",
+            "size": 65536
+          },
+          {
+            "offset": "0xb6ee43c",
+            "size": 65536
+          },
+          {
+            "offset": "0x16ddc878",
+            "size": 65536
+          },
+          {
+            "offset": "0x224cacb4",
+            "size": 65536
+          },
+          {
+            "offset": "0x2dbb90f0",
+            "size": 65536
+          },
+          {
+            "offset": "0x392a752c",
+            "size": 65536
+          },
+          {
+            "offset": "0x44995968",
+            "size": 65536
+          },
+          {
+            "offset": "0x50073da5",
+            "size": 65536
+          }
+        ],
+        "sha256": "00018a2e26234c5c019ec1f50fe606d4129a318f88c9e3ae8ce936ffb9b009bb"
+      },
+      "path": "main.1120.com.gameloft.android.ANMP.GloftM3HM.obb"
+    },
+    {
+      "size": 81507652,
+      "sha256": [
+        "fc9dc19c90c64508bf87fff60203744f338dfac8cb95e3f68367bc436019cb17"
+      ],
+      "critical_regions": {
+        "regions": [
+          {
+            "offset": "0x0",
+            "size": 65536
+          },
+          {
+            "offset": "0xb1ac2e",
+            "size": 65536
+          },
+          {
+            "offset": "0x163585c",
+            "size": 65536
+          },
+          {
+            "offset": "0x215048a",
+            "size": 65536
+          },
+          {
+            "offset": "0x2c6b0b8",
+            "size": 65536
+          },
+          {
+            "offset": "0x3785ce6",
+            "size": 65536
+          },
+          {
+            "offset": "0x42a0914",
+            "size": 65536
+          },
+          {
+            "offset": "0x4dab544",
+            "size": 65536
+          }
+        ],
+        "sha256": "5ca6676885dd154b5853ffa40a052e541766e39aed0a491b09b293437738567d"
+      },
+      "path": "patch.11428.com.gameloft.android.ANMP.GloftM3HM.obb"
+    }
+  ],
+  "commit": [
+    "lib",
+    "main.1120.com.gameloft.android.ANMP.GloftM3HM.obb",
+    "patch.11428.com.gameloft.android.ANMP.GloftM3HM.obb"
+  ],
+  "marker": ".eapx-mc3-data.json",
+  "log": "eapx.log",
+  "placeholder": "PUT_MC3_DATA_HERE.txt",
+  "space": {
+    "safety_bytes": 67108864
+  },
+  "requires_eapx": ">=0.3.0"
+}

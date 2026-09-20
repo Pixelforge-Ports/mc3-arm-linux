@@ -1,0 +1,22 @@
+Put your own Modern Combat 3: Fallen Nation v1.1.7g APK plus its two OBB
+expansion files in this directory. The filenames do not matter.
+
+Modern Combat 3 PortMaster port and eapx extractor by EapRules.
+
+The port validates this exact native library before extracting anything:
+
+  lib/armeabi-v7a/libModernCombat3.so
+  SHA1 be0d5e8779899e081a538b3930ec711d2df8aeb4
+
+A complete donor is three files:
+
+  the APK           (game code, ~15 MB)
+  main.1120.com.gameloft.android.ANMP.GloftM3HM.obb    (~1.3 GB)
+  patch.11428.com.gameloft.android.ANMP.GloftM3HM.obb  (~80 MB)
+
+The supported build is v1.1.7g, Android package
+com.gameloft.android.ANMP.GloftM3HM. An extracted Android/obb backup folder
+works too - drop the whole folder here.
+
+The first launch extracts and validates everything automatically, then starts
+the game. No game data is ever distributed with this port.
